@@ -1,0 +1,165 @@
+@use '@/styles/variables' as *;
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: $spacing-md;
+}
+
+.aboutMe {
+  color: $accent-color;
+  margin-top: $spacing-xs;
+  font-family: $font-family-mono;
+  line-height: 1.5;
+  // border-bottom: 1px solid $border-color;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-md;
+  text-align: justify;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
+}
+
+// New additions for work experience and contact sections
+.section {
+  margin-bottom: $spacing-lg;
+
+  @media (max-width: 768px) {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.sectionHeader {
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-xs;
+}
+
+.highlightBlock {
+  display: inline-block;
+  background-color: $highlight-color;
+  color: $bg-color;
+  padding: $spacing-xs $spacing-sm;
+  font-weight: bold;
+  font-family: $font-family-mono;
+}
+
+/* Experience section styles */
+.experienceList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.experienceItem {
+  padding: $spacing-md;
+  border: 1px solid $border-color;
+  font-family: $font-family-mono;
+
+  &:hover {
+    background-color: rgba(42, 161, 152, 0.05);
+  }
+}
+
+.experienceTitle {
+  color: $command-color;
+  font-weight: bold;
+  margin-bottom: $spacing-xs;
+}
+
+.experiencePeriod {
+  color: $accent-color;
+  font-size: 0.9rem;
+  margin-bottom: $spacing-sm;
+}
+
+.experienceDesc {
+  line-height: 1.5;
+  color: $text-color;
+}
+
+.experienceTech {
+  margin-top: $spacing-sm;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.techTag {
+  background-color: rgba($command-color, 0.1);
+  border: 1px solid $command-color;
+  color: $command-color;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}
+
+/* Contact section styles */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  font-family: $font-family-mono;
+  max-width: 600px;
+}
+
+.contactRow {
+  display: flex;
+  align-items: baseline;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.contactLabel {
+  color: $command-color;
+  width: 100px;
+  flex-shrink: 0;
+
+  @media (max-width: 480px) {
+    width: auto;
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.contactValue {
+  color: $text-color;
+
+  &:hover {
+    color: $highlight-color;
+  }
+}
+
+/* Footer styles */
+.footer {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-md;
+  margin-bottom: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.asciiLine {
+  color: $command-color;
+  font-family: $font-family-mono;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+  margin-bottom: $spacing-sm;
+}
+
+.footerText {
+  color: $accent-color;
+  font-family: $font-family-mono;
+  font-size: 0.9rem;
+  text-align: center;
+}

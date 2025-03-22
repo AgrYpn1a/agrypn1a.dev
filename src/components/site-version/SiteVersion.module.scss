@@ -1,0 +1,9 @@
+@use '@/styles/variables' as *;
+
+.siteVersion {
+    color: $command-color;
+    width: 100%;
+    padding: $spacing-sm;
+    display: flex;
+    justify-content: center;
+}

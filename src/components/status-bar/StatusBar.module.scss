@@ -1,0 +1,17 @@
+@use "@/styles/variables" as *;
+
+.statusBar {
+    padding: $spacing-sm $spacing-md;
+    display: flex;
+    justify-content: space-between;
+    background-color: $bg-color;
+    font-family: $font-family-mono;
+}
+
+.statusLeft {
+    color: $command-color;
+}
+
+.statusRight {
+    color: $accent-color;
+}

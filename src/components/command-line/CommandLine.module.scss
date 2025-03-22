@@ -1,0 +1,39 @@
+@use "@/styles/variables" as *;
+
+.commandLine {
+    display: flex;
+    align-items: center;
+    margin-top: $spacing-sm;
+    font-family: $font-family-mono;
+    height: 24px;
+}
+
+.prompt {
+    color: $command-color;
+    margin-right: $spacing-sm;
+}
+
+.typedText {
+    color: $text-color;
+    font-family: $font-family-mono;
+    font-size: $font-size-base;
+    padding-left: $spacing-lg;
+}
+
+.cursor {
+    position: relative;
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background-color: $command-color;
+    vertical-align: middle;
+    margin-left: $spacing-xs;
+
+    &.visible {
+        opacity: 1;
+    }
+
+    &.hidden {
+        opacity: 0;
+    }
+}

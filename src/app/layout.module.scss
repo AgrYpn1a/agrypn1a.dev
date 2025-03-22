@@ -1,0 +1,22 @@
+@use '@/styles/variables' as *;
+
+.mainContent {
+    flex: 1;
+    width: 100%;
+}
+
+.container {
+    background-color: $bg-color;
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 1024px;
+    padding: $spacing-xl;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    @media (max-width: 768px) {
+        background-color: $bg-color !important;
+    }
+}

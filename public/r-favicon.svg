@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- White background -->
+  <rect width="32" height="32" fill="#ffffff"/>
+
+  <!-- Game of Life cell grid forming a precise 'R' with corrected bottom -->
+  <!-- Vertical stem -->
+  <rect x="8" y="4" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="8" y="8" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="8" y="12" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="8" y="16" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="8" y="20" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="8" y="24" width="4" height="4" fill="#1a1a1a"/>
+
+  <!-- Top horizontal section -->
+  <rect x="12" y="4" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="16" y="4" width="4" height="4" fill="#1a1a1a"/>
+
+  <!-- Top curve/right side -->
+  <rect x="20" y="8" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="20" y="12" width="4" height="4" fill="#1a1a1a"/>
+
+  <!-- Middle horizontal section -->
+  <rect x="12" y="16" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="16" y="16" width="4" height="4" fill="#1a1a1a"/>
+
+  <!-- Diagonal leg portion - moved to the right -->
+  <rect x="16" y="20" width="4" height="4" fill="#1a1a1a"/>
+  <rect x="20" y="24" width="4" height="4" fill="#1a1a1a"/>
+</svg>

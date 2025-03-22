@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="32" height="32"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Main silhouette using dark bg-color -->
+  <rect x="10" y="4" width="2" height="2" fill="#002b36"></rect>
+  <rect x="12" y="4" width="2" height="2" fill="#002b36"></rect>
+  
+  <rect x="8" y="6" width="2" height="2" fill="#002b36"></rect>
+  <rect x="10" y="6" width="2" height="2" fill="#002b36"></rect>
+  <rect x="12" y="6" width="2" height="2" fill="#002b36"></rect>
+  <rect x="14" y="6" width="2" height="2" fill="#002b36"></rect>
+  
+  <rect x="6" y="8" width="2" height="2" fill="#002b36"></rect>
+  <rect x="4" y="10" width="2" height="2" fill="#002b36"></rect>
+  <rect x="8" y="8" width="2" height="2" fill="#002b36"></rect>
+  <rect x="10" y="8" width="2" height="2" fill="#002b36"></rect>
+  <rect x="12" y="8" width="2" height="2" fill="#002b36"></rect>
+  <rect x="14" y="8" width="2" height="2" fill="#002b36"></rect>
+  
+  <rect x="6" y="10" width="2" height="2" fill="#002b36"></rect>
+  <rect x="8" y="10" width="2" height="2" fill="#002b36"></rect>
+  <rect x="10" y="10" width="2" height="2" fill="#002b36"></rect>
+  <rect x="12" y="10" width="2" height="2" fill="#002b36"></rect>
+  
+  <rect x="6" y="12" width="2" height="2" fill="#002b36"></rect>
+  <rect x="6" y="12" width="2" height="2" fill="#002b36"></rect>
+  <rect x="8" y="12" width="2" height="2" fill="#002b36"></rect>
+  <rect x="10" y="12" width="2" height="2" fill="#002b36"></rect>
+  
+  <rect x="6" y="14" width="2" height="2" fill="#002b36"></rect>
+  <rect x="4" y="12" width="2" height="2" fill="#002b36"></rect>
+  <rect x="4" y="14" width="2" height="2" fill="#002b36"></rect>
+  <rect x="8" y="14" width="2" height="2" fill="#002b36"></rect>
+  <rect x="10" y="14" width="2" height="2" fill="#002b36"></rect>
+  
+  <!-- Neck/shoulder curve -->
+  <rect x="6" y="16" width="2" height="2" fill="#002b36"></rect>
+  <rect x="8" y="16" width="2" height="2" fill="#002b36"></rect>
+  <rect x="10" y="16" width="2" height="2" fill="#002b36"></rect>
+  <rect x="12" y="16" width="2" height="2" fill="#002b36"></rect>
+  
+  <!-- Lower curve -->
+  <rect x="8" y="18" width="2" height="2" fill="#002b36"></rect>
+  <rect x="10" y="18" width="2" height="2" fill="#002b36"></rect>
+  <rect x="12" y="18" width="2" height="2" fill="#002b36"></rect>
+  <rect x="14" y="18" width="2" height="2" fill="#002b36"></rect>
+  
+  <rect x="8" y="20" width="2" height="2" fill="#002b36"></rect>
+  <rect x="10" y="20" width="2" height="2" fill="#002b36"></rect>
+  <rect x="12" y="20" width="2" height="2" fill="#002b36"></rect>
+  <rect x="14" y="20" width="2" height="2" fill="#002b36"></rect>
+  <rect x="16" y="20" width="2" height="2" fill="#002b36"></rect>
+  <rect x="18" y="20" width="2" height="2" fill="#002b36"></rect>
+  
+  <rect x="10" y="22" width="2" height="2" fill="#002b36"></rect>
+  <rect x="12" y="22" width="2" height="2" fill="#002b36"></rect>
+  <rect x="14" y="22" width="2" height="2" fill="#002b36"></rect>
+  <rect x="16" y="22" width="2" height="2" fill="#002b36"></rect>
+  <rect x="18" y="22" width="2" height="2" fill="#002b36"></rect>
+  <rect x="20" y="22" width="2" height="2" fill="#002b36"></rect>
+  
+  <rect x="14" y="24" width="2" height="2" fill="#002b36"></rect>
+  <rect x="16" y="24" width="2" height="2" fill="#002b36"></rect>
+  <rect x="18" y="24" width="2" height="2" fill="#002b36"></rect>
+  
+  
+  <!-- Outline elements using custom yellow (#e5c07b) -->
+  <rect x="14" y="4" width="2" height="2" fill="#002b36"></rect>
+  <rect x="16" y="6" width="2" height="2" fill="#002b36"></rect>
+  <rect x="16" y="8" width="2" height="2" fill="#e5c07b"></rect>
+  <rect x="14" y="10" width="2" height="2" fill="#e5c07b"></rect>
+  <rect x="12" y="12" width="2" height="2" fill="#e5c07b"></rect>
+  <rect x="12" y="14" width="2" height="2" fill="#e5c07b"></rect>
+  <rect x="14" y="16" width="2" height="2" fill="#e5c07b"></rect>
+  <rect x="16" y="18" width="2" height="2" fill="#e5c07b"></rect>
+  <rect x="20" y="20" width="2" height="2" fill="#e5c07b"></rect>
+  
+  <!-- Circle around candle using border-color -->
+  <rect x="20" y="14" width="2" height="2" fill="#586e75"></rect>
+  
+  <rect x="18" y="18" width="2" height="2" fill="#586e75"></rect>
+  <rect x="20" y="18" width="2" height="2" fill="#586e75"></rect>
+  <rect x="22" y="18" width="2" height="2" fill="#586e75"></rect>
+  
+  <!-- Candle in orange (heading-color) -->
+  <rect x="20" y="16" width="2" height="2" fill="#cb4b16"></rect>
+  
+  <!-- Flame in orange -->
+  <rect x="20" y="14" width="2" height="2" fill="#cb4b16"></rect>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

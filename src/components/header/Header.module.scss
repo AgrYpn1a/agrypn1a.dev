@@ -1,0 +1,140 @@
+@use '@/styles/variables' as *;
+
+.header {
+    // border-bottom: 1px solid $border-color;
+}
+
+.title {
+    color: $heading-color;
+    font-size: $font-size-title;
+    font-weight: bold;
+    margin: 0;
+    font-family: $font-family-mono;
+    opacity: 0;
+    transform: translateY(5px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+    padding: 0 $spacing-sm;
+    text-align: center;
+    width: 100%;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    // Responsive font size for mobile
+    @media (max-width: 768px) {
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1rem;
+    }
+}
+
+.titleContainer {
+    padding: $spacing-md;
+
+    @media (max-width: 480px) {
+        padding: $spacing-sm;
+    }
+}
+
+.status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $border-color;
+
+    @media (max-width: 480px) {
+        padding: 0 $spacing-sm;
+    }
+}
+
+.statusTime {
+    color: $accent-color;
+}
+
+// ASCII decoration styles
+.asciiContainer {
+    margin-bottom: $spacing-md;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        margin-bottom: $spacing-sm;
+    }
+}
+
+.asciiLine {
+    color: $command-color;
+    font-family: $font-family-mono;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 1;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.8rem;
+    }
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: $spacing-xs 0;
+}
+
+.asciiChar {
+    color: $command-color;
+    font-family: $font-family-mono;
+    padding: 0 $spacing-xs;
+}
+
+.highlight {
+    color: $command-color;
+    font-weight: normal;
+}
+
+.themeToggleContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.quote {
+    font-family: $font-family-mono;
+    color: $text-color;
+    border-left: 2px solid $command-color;
+    padding: $spacing-md $spacing-md $spacing-md $spacing-lg;
+    margin: $spacing-lg 0;
+    position: relative;
+    background-color: rgba($command-color, 0.05);
+
+    // Remove the before/after pseudo-elements with quotation marks
+    // as they're causing positioning issues with apostrophes
+}
+
+.quoteAuthor {
+    display: block;
+    text-align: right;
+    margin-top: $spacing-sm;
+    font-style: italic;
+    color: $accent-color;
+
+    &::before {
+        content: '— ';
+    }
+}

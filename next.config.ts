@@ -1,7 +1,9 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+    publicRuntimeConfig: {
+        version: '1.0.0',
+    },
 };
 
 export default nextConfig;

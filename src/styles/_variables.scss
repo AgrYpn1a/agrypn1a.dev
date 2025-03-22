@@ -1,0 +1,19 @@
+// SCSS Variable mapping to CSS Variables
+$bg-color: var(--bg-color);
+$text-color: var(--text-color);
+$heading-color: var(--heading-color);
+$command-color: var(--command-color);
+$highlight-color: var(--highlight-color);
+$accent-color: var(--accent-color);
+$border-color: var(--border-color);
+
+$font-family-mono: var(--font-family-mono);
+$font-size-base: var(--font-size-base);
+$font-size-title: var(--font-size-title);
+$font-size-small: var(--font-size-small);
+
+$spacing-xs: var(--spacing-xs);
+$spacing-sm: var(--spacing-sm);
+$spacing-md: var(--spacing-md);
+$spacing-lg: var(--spacing-lg);
+$spacing-xl: var(--spacing-xl);
