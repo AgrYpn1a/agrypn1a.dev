@@ -20,8 +20,6 @@ export default async function Articles() {
         {} as Record<string, Post[]>
     );
 
-    console.log({ postCategoryMap });
-
     return (
         <div>
             {Object.keys(postCategoryMap).map((category) => {
@@ -32,8 +30,6 @@ export default async function Articles() {
                         <h2>{transformCategoryName(category)}</h2>
                         <ul>
                             {posts.map((post) => {
-                                // console.log({ post });
-                                // const href = `${BASE_PATH}/${post.data.slug}`;
                                 return (
                                     <li key={post.data.slug}>
                                         <a href={post.data.slug}>{post.data.title}</a>

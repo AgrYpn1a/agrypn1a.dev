@@ -1,18 +1,29 @@
 import fs from 'fs';
 import { simpleGit } from 'simple-git';
 
+const VALID_REPO_NAME = 'AgrYpn1a/my-org';
+const REPO = 'https://github.com/AgrYpn1a/my-org.git';
+const REPO_LOCAL_PATH = `${process.cwd()}/public/org`;
+
 const options = {
-    baseDir: `${process.cwd()}/public/org`,
+    baseDir: REPO_LOCAL_PATH,
     binary: 'git',
     maxConcurrentProcesses: 6,
     trimmed: false,
 };
 
+// Create content dir if it does not exist
+if (!fs.existsSync(REPO_LOCAL_PATH)) {
+    fs.mkdirSync(REPO_LOCAL_PATH);
+}
+
 const git = simpleGit(options);
 
-const VALID_REPO_NAME = 'AgrYpn1a/my-org';
-const REPO = 'https://github.com/AgrYpn1a/my-org.git';
-const REPO_LOCAL_PATH = `${process.cwd()}/public/org`;
+// Initialise content repo
+const isRepo = await git.checkIsRepo();
+if (!isRepo) {
+    git.clone(REPO, `${process.cwd()}/public/org`);
+}
 
 export async function POST(request: Request) {
     const body = await request.json();
@@ -29,6 +40,7 @@ export async function POST(request: Request) {
 
     try {
         const isRepo = await git.checkIsRepo();
+
         if (isRepo) {
             // This command serves purpose for local testing
             // however it does not harm the production.
