@@ -54,7 +54,7 @@ export default function resolveLinks(files: any) {
 
             // Process final links
             if (url.protocol === 'file:') {
-                let href = url.pathname.replace(/\.org$/, '');
+                const href = url.pathname.replace(/\.org$/, '');
                 node.properties[propertyName] = href + url.hash;
 
                 file.data.links = file.data.links || [];
