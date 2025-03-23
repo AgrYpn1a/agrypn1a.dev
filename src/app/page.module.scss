@@ -163,3 +163,28 @@
   font-size: 0.9rem;
   text-align: center;
 }
+
+.quote {
+  font-family: $font-family-mono;
+  color: $text-color;
+  border-left: 2px solid $command-color;
+  padding: $spacing-md $spacing-md $spacing-md $spacing-lg;
+  margin: $spacing-lg 0;
+  position: relative;
+  background-color: rgba($command-color, 0.05);
+
+  // Remove the before/after pseudo-elements with quotation marks
+  // as they're causing positioning issues with apostrophes
+}
+
+.quoteAuthor {
+  display: block;
+  text-align: right;
+  margin-top: $spacing-sm;
+  font-style: italic;
+  color: $accent-color;
+
+  &::before {
+    content: '— ';
+  }
+}

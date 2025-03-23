@@ -16,6 +16,11 @@ export default function Home() {
                 and enjoy life beyond the screen. Beside cars, boats and geek stuff I sometimes like to read, create art and listen to music.
             </div>
 
+            <blockquote className={styles.quote}>
+                Maybe I'm just a bizarre little person who walks back and forth.
+                <cite className={styles.quoteAuthor}>Terry A. Davis</cite>
+            </blockquote>
+
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
                     <span className={styles.highlightBlock}>CONTACT INFO</span>

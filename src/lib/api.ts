@@ -1,19 +1,24 @@
 import * as path from 'path';
 import { trough } from 'trough';
-import toVFile from 'to-vfile';
-import findDown, { VFile } from 'vfile-find-down';
+import { toVFile } from 'to-vfile';
 import report from 'vfile-reporter';
 
 import orgToHtml from './org-to-html';
-import resolveLinks, { BASE_PATH } from './resolve-links';
-import { Stats } from 'fs';
+import resolveLinks from './resolve-links';
+import { findDownAll } from 'vfile-find-down';
+import { VFile } from 'vfile-reporter/lib';
 
-interface PageData {
+type PageData = {
     slug: string;
     title: string;
+    category: string;
     links: string[];
     backlinks: Set<string>;
-}
+};
+
+export type Post = {
+    data: PageData;
+};
 
 export type Page = VFile & { data: PageData };
 
@@ -30,38 +35,35 @@ const processor = trough().use(collectFiles).use(processPosts).use(resolveLinks)
 
 function collectFiles(root: string): Promise<Page[]> {
     return new Promise<Page[]>((resolve, reject) => {
-        findDown.all(
-            (f: VFile, stats: Stats) => stats.isFile() && f.basename?.endsWith('.org'),
-            root,
-            (err: Error, files?: VFile[]) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    files?.forEach((f) => {
-                        if (!f.path) {
-                            return;
-                        }
+        findDownAll('.org', root, (err, files) => {
+            if (err) {
+                reject(err);
+            } else {
+                files?.forEach((f) => {
+                    if (!f.path) {
+                        return;
+                    }
 
-                        const relativePath = path.relative(root, f.path).replace(/\.org$/, '');
+                    const relativePath = path.relative(root, f.path).replace(/\.org$/, '');
 
-                        // First element of relative path should be considered a post category
-                        const category = relativePath.split('/')[1];
-                        const slug = `/${relativePath}`;
+                    // First element of relative path should be considered a post category
+                    const category = relativePath.split('/')[1];
+                    const slug = `/${relativePath}`;
 
-                        const data = {
-                            slug,
-                            title: '',
-                            links: [],
-                            category,
-                            backlinks: new Set(),
-                        } as PageData;
+                    const data = {
+                        slug,
+                        title: '',
+                        links: [],
+                        category,
+                        backlinks: new Set(),
+                    } as PageData;
 
-                        f.data = data;
-                    });
-                    resolve((files as Page[]) || []);
-                }
+                    f.data = data;
+                });
+
+                resolve((files as unknown as Page[]) || []);
             }
-        );
+        });
     });
 }
 
@@ -141,7 +143,7 @@ export async function getPostBySlug(slug: string) {
     return post;
 }
 
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<Post[]> {
     const posts = await allPosts();
     return await Promise.all(Object.values(posts));
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { join } from 'path';
 import Head from 'next/head';
 import { getAllPaths, getPostBySlug } from '@/lib/api';
 import Link from 'next/link';
@@ -103,7 +102,7 @@ const Note = ({ title, hast, backlinks }: any) => {
 };
 
 type DynamicParams = {
-    params: Promise<{ post: string }>;
+    params: Promise<{ post: string[] }>;
 };
 
 export default async function PostPage({ params }: DynamicParams) {

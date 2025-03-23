@@ -1,15 +1,24 @@
-import { getAllPaths, getAllPosts } from '@/lib/api';
-import { BASE_PATH } from '@/lib/resolve-links';
+import { getAllPosts, Post } from '@/lib/api';
 import { transformCategoryName } from '@/utils/posts';
 
 export default async function Articles() {
     const posts = await getAllPosts();
-    const postCategoryMap = posts.reduce((map, post) => {
-        return {
-            ...map,
-            [post.data.category]: [...(map[post.data.category] ?? []), post],
-        };
-    }, {});
+    const postCategoryMap = posts.reduce(
+        (map, post) => {
+            if (map[post.data.category]) {
+                return {
+                    ...map,
+                    [post.data.category]: [...map[post.data.category], post],
+                };
+            }
+
+            return {
+                ...map,
+                [post.data.category]: [post],
+            };
+        },
+        {} as Record<string, Post[]>
+    );
 
     console.log({ postCategoryMap });
 

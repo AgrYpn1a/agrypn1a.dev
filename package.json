@@ -19,7 +19,8 @@
         "rehype-stringify": "^8.0.0",
         "rehype-toc": "^3.0.2",
         "rehype-url-inspector": "^2.0.2",
-        "to-vfile": "^6.1.0",
+        "simple-git": "^3.27.0",
+        "to-vfile": "^7.2.4",
         "trough": "^2.1.0",
         "unified": "^9.2.2",
         "uniorg": "^0.5.3",
@@ -27,7 +28,7 @@
         "uniorg-parse": "^0.5.3",
         "uniorg-rehype": "^0.5.8",
         "uniorg-slug": "^0.4.8",
-        "vfile-find-down": "^5.0.1",
+        "vfile-find-down": "^7.1.0",
         "vfile-reporter": "^7.0.4"
     },
     "devDependencies": {

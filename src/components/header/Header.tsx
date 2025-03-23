@@ -58,10 +58,6 @@ const Header: React.FC<HeaderProps> = ({ siteVersion }) => {
                     <div className={styles.asciiLine}>└──────────────────────────────────┘</div>
                 </div>
                 <SiteVersion version={siteVersion} />
-                <div className={styles.quote}>
-                    Maybe I'm just a bizarre little person who walks back and forth.
-                    <span className={styles.quoteAuthor}>Terry A. Davis</span>
-                </div>
             </div>
         </header>
     );

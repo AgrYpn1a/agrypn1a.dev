@@ -16,12 +16,17 @@ const SubHeading: React.FC<{ children?: any }> = ({ children }) => <h3 id={child
 // `next/link`.
 const processor = unified().use(rehype2react, {
     createElement: React.createElement,
-    Fragment: React.Fragment,
-    components: {
+    jsx: {
         a: Link,
         h1: Heading,
         h2: SubHeading,
     },
+    // Fragment: React.Fragment,
+    // components: {
+    //     a: Link,
+    //     h1: Heading,
+    //     h2: SubHeading,
+    // },
 });
 
 const Rehype = ({ hast }: any) => {

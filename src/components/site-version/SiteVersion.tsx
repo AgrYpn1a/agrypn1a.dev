@@ -1,6 +1,10 @@
 import styles from './SiteVersion.module.scss';
 
-const SiteVersion = ({ version }) => {
+type SiteVersionProps = {
+    version: string;
+};
+
+const SiteVersion: React.FC<SiteVersionProps> = ({ version }) => {
     return <div className={styles.siteVersion}>v {version}</div>;
 };
 

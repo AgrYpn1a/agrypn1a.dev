@@ -6,7 +6,7 @@ import extractKeywords from 'uniorg-extract-keywords';
 import { uniorgSlug } from 'uniorg-slug';
 import { visitIds } from 'orgast-util-visit-ids';
 import katex from 'rehype-katex';
-import { VFile } from 'vfile-find-down';
+import { VFile } from 'vfile-reporter/lib';
 import { Headline } from 'uniorg';
 import toc from 'rehype-toc';
 
