@@ -17,7 +17,7 @@ export default function Home() {
             </div>
 
             <blockquote className={styles.quote}>
-                Maybe I'm just a bizarre little person who walks back and forth.
+                Maybe I&apos;m just a bizarre little person who walks back and forth.
                 <cite className={styles.quoteAuthor}>Terry A. Davis</cite>
             </blockquote>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import { getAllPaths, getPostBySlug } from '@/lib/api';
 import Link from 'next/link';
 import Rehype from '@/components/Rehype';
 
@@ -20,7 +19,11 @@ import Rehype from '@/components/Rehype';
 //     };
 // }
 export async function generateStaticParams() {
-    const paths = await getAllPaths();
+    // const paths = await getAllPaths();
+    const pathsRes = await fetch('http://localhost:3000/api/content/all-paths');
+    const paths = (await pathsRes.json()).paths as string[];
+
+    console.log({ pathsRes, paths });
 
     return paths.map((path) => ({
         slug: [path.replace(/\.org$/, '')],
@@ -109,7 +112,9 @@ export default async function PostPage({ params }: DynamicParams) {
     const { post } = await params;
     const slug = `/org${post.reduce((r, p) => `${r}/${p}`, '')}`;
 
-    const postData = await getPostBySlug(slug);
+    // const postData = await getPostBySlug(slug);
+    const postRes = await fetch(`http://localhost:3000/api/content/post?slug=${slug}`);
+    const postData = (await postRes.json()).post;
 
     return <Note title={postData?.data.title} hast={postData?.result} backlinks={[]} />;
 }

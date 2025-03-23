@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { revalidatePath } from 'next/cache';
 import { simpleGit } from 'simple-git';
 
 const VALID_REPO_NAME = 'AgrYpn1a/my-org';
@@ -44,8 +45,9 @@ export async function POST(request: Request) {
         if (isRepo) {
             // This command serves purpose for local testing
             // however it does not harm the production.
-            git.reset(['--hard', 'HEAD']);
+            // git.reset(['--hard', 'HEAD']);
             git.pull();
+            revalidatePath('/org');
         } else {
             throw new Error('Not a valid git repository.');
         }
