@@ -9,12 +9,16 @@ WORKDIR /usr/src/app
 # Copying this separately prevents re-running npm install on every code change.
 COPY package*.json ./
 
+# Copy local code to the container image.
+COPY . ./
+
 # Install production dependencies.
 RUN apk add --no-cache git
 RUN npm install --only=production
 
-# Copy local code to the container image.
-COPY . ./
+# Fetch the content repp
+RUN mkdir -p ./public/org/
+RUN git clone https://github.com/AgrYpn1a/my-org.git ./public/org/
 
 RUN npm run build
 
