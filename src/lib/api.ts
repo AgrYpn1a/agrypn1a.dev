@@ -89,20 +89,20 @@ async function processPosts(files: Page[]) {
 // Assign all collected backlinks to file. This function should be
 // called after all pages have been processed---otherwise, it might
 // miss backlinks.
-function populateBacklinks(files: Page[]) {
-    const backlinks: Record<string, Set<string>> = {};
+// function populateBacklinks(files: Page[]) {
+//     const backlinks: Record<string, Set<string>> = {};
 
-    files.forEach((file: Page) => {
-        file.data.links = file.data.links || new Set();
-        file.data.backlinks = backlinks[file.data.slug] = backlinks[file.data.slug] || new Set();
+//     files.forEach((file: Page) => {
+//         file.data.links = file.data.links || new Set();
+//         file.data.backlinks = backlinks[file.data.slug] = backlinks[file.data.slug] || new Set();
 
-        file.data.links.forEach((other: string) => {
-            const decodedOther = decodeURIComponent(other);
-            backlinks[decodedOther] = backlinks[decodedOther] || new Set();
-            backlinks[decodedOther].add(file.data.slug);
-        });
-    });
-}
+//         file.data.links.forEach((other: string) => {
+//             const decodedOther = decodeURIComponent(other);
+//             backlinks[decodedOther] = backlinks[decodedOther] || new Set();
+//             backlinks[decodedOther].add(file.data.slug);
+//         });
+//     });
+// }
 
 const loadPosts = async () => {
     const files = await new Promise<Page[]>((resolve, reject) =>

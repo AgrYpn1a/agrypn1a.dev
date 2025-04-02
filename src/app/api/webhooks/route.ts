@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { revalidatePath } from 'next/cache';
 import { simpleGit } from 'simple-git';
 
 const VALID_REPO_NAME = 'AgrYpn1a/my-org';
@@ -12,19 +13,6 @@ const options = {
     trimmed: false,
 };
 
-// Create content dir if it does not exist
-if (!fs.existsSync(REPO_LOCAL_PATH)) {
-    fs.mkdirSync(REPO_LOCAL_PATH);
-}
-
-const git = simpleGit(options);
-
-// Initialise content repo
-const isRepo = await git.checkIsRepo();
-if (!isRepo) {
-    git.clone(REPO, `${process.cwd()}/public/org`);
-}
-
 export async function POST(request: Request) {
     const body = await request.json();
     if (body.repository.full_name !== VALID_REPO_NAME) {
@@ -33,26 +21,18 @@ export async function POST(request: Request) {
         });
     }
 
-    if (!fs.existsSync(REPO_LOCAL_PATH)) {
-        fs.mkdirSync(REPO_LOCAL_PATH);
-        git.clone(REPO, `${process.cwd()}/public/org`);
-    }
-
     try {
-        const isRepo = await git.checkIsRepo();
+        // Remove and re-create dir
+        fs.rmSync(REPO_LOCAL_PATH, { recursive: true });
+        fs.mkdirSync(REPO_LOCAL_PATH);
 
-        if (isRepo) {
-            // This command serves purpose for local testing
-            // however it does not harm the production.
-            git.reset(['--hard', 'HEAD']);
-            git.pull();
-        } else {
-            throw new Error('Not a valid git repository.');
-        }
+        const git = simpleGit(options);
 
-        // await git.clone('', `${process.cwd()}/public/org`, ['--depth', '1']);
+        // Clone again
+        git.clone(REPO, REPO_LOCAL_PATH, ['--depth', '1']);
+        revalidatePath('/org');
     } catch (err) {
-        console.error('Tried to execute [git pull] in' + `${process.cwd()}/public/org`);
+        console.error('Tried to execute [git clone] in' + `${process.cwd()}/public/org`);
         console.error(err);
 
         return new Response('Error', {
