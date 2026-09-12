@@ -14,6 +14,7 @@ type PageData = {
     category: string;
     links: string[];
     backlinks: Set<string>;
+    filetags?: string;
 };
 
 export type Post = {
@@ -146,4 +147,25 @@ export async function getPostBySlug(slug: string) {
 export async function getAllPosts(): Promise<Post[]> {
     const posts = await allPosts();
     return await Promise.all(Object.values(posts));
+}
+
+// Posts whose top-level folder under `public/org/` matches `category`.
+// e.g. `getPostsInCategory('blog')` returns everything under `public/org/blog/`.
+export async function getPostsInCategory(category: string): Promise<Post[]> {
+    const posts = await getAllPosts();
+    return posts.filter((post) => post.data.category === category);
+}
+
+export function getTags(post: Post): string[] {
+    return (post.data.filetags ?? '')
+        .split(':')
+        .map((t) => t.trim())
+        .filter(Boolean);
+}
+
+export async function getAllTags(): Promise<string[]> {
+    const posts = await getAllPosts();
+    const tags = new Set<string>();
+    posts.forEach((post) => getTags(post).forEach((t) => tags.add(t)));
+    return Array.from(tags).sort();
 }

@@ -17,7 +17,8 @@ const processor = unified()
     .use(extractIds) // -
     .use(org2rehype) // -
     .use(toc) // -
-    .use(katex, { output: 'mathml' }) // -
+    .use(katex, { output: 'html' }) // - HTML output renders like real LaTeX (needs katex.min.css)
+    .use(fixStyleProps) // - must run after katex, which emits string style props
     .use(toJson);
 
 export default async function orgToHtml(file: VFile) {
@@ -46,6 +47,34 @@ export default async function orgToHtml(file: VFile) {
 //         });
 //     }
 // }
+
+// rehype-react rejects a string `style` prop, but KaTeX's MathML output emits
+// bogus `style="false"` attributes. Convert every string `style` in the hast to
+// a React style object (an unparseable value like "false" becomes `{}`).
+function fixStyleProps() {
+    return (tree: any) => walk(tree);
+
+    function walk(node: any) {
+        if (node?.properties && typeof node.properties.style === 'string') {
+            node.properties.style = parseStyle(node.properties.style);
+        }
+        node?.children?.forEach(walk);
+    }
+
+    function parseStyle(value: string): Record<string, string> {
+        const style: Record<string, string> = {};
+        value.split(';').forEach((decl) => {
+            const idx = decl.indexOf(':');
+            if (idx === -1) return;
+            const prop = decl.slice(0, idx).trim();
+            const val = decl.slice(idx + 1).trim();
+            if (!prop) return;
+            const key = prop.startsWith('--') ? prop : prop.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+            style[key] = val;
+        });
+        return style;
+    }
+}
 
 function extractIds() {
     return transformer;

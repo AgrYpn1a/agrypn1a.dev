@@ -1,0 +1,52 @@
+@use '@/styles/variables' as *;
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-xs $spacing-sm;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-color;
+}
+
+.tag {
+    background-color: rgba($command-color, 0.08);
+    border: 1px solid $command-color;
+    color: $command-color;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: $font-family-mono;
+    font-size: $font-size-small;
+    line-height: 1.4;
+    cursor: pointer;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+
+    &:hover {
+        background-color: rgba($command-color, 0.22);
+    }
+}
+
+.postList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin: $spacing-sm 0;
+    }
+}
+
+.tagSelected {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+    color: $bg-color;
+    font-weight: bold;
+
+    &:hover {
+        background-color: $highlight-color;
+    }
+}

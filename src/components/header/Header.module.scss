@@ -4,25 +4,28 @@
     // border-bottom: 1px solid $border-color;
 }
 
-.title {
-    color: $heading-color;
-    font-size: $font-size-title;
-    font-weight: bold;
-    margin: 0;
-    font-family: $font-family-mono;
-    opacity: 0;
-    transform: translateY(5px);
-    transition:
-        opacity 0.5s ease,
-        transform 0.5s ease;
-    padding: 0 $spacing-sm;
-    text-align: center;
+.topRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-md;
     width: 100%;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: $spacing-sm;
+}
 
-    &.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.titleBox {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    width: fit-content;
+    max-width: 100%;
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid $command-color;
+    font-family: $font-family-mono;
+    font-size: $font-size-title;
+    line-height: 1;
+    white-space: nowrap;
 
     // Responsive font size for mobile
     @media (max-width: 768px) {
@@ -30,15 +33,28 @@
     }
 
     @media (max-width: 480px) {
-        font-size: 1rem;
+        font-size: 0.85rem;
+        gap: $spacing-xs;
+        padding: $spacing-xs;
     }
 }
 
+.title {
+    color: $heading-color;
+    font-weight: bold;
+}
+
+.blocks {
+    color: $command-color;
+    flex: 0 0 auto;
+}
+
 .titleContainer {
-    padding: $spacing-md;
+    padding: $spacing-md 0;
+    min-width: 0;
 
     @media (max-width: 480px) {
-        padding: $spacing-sm;
+        padding: $spacing-sm 0;
     }
 }
 
@@ -46,70 +62,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: $spacing-sm;
+    padding-bottom: $spacing-sm;
     border-bottom: 1px solid $border-color;
 
     @media (max-width: 480px) {
-        padding: 0 $spacing-sm;
+        gap: $spacing-sm;
     }
 }
 
 .statusTime {
     color: $accent-color;
+    flex-shrink: 0;
+
+    @media (max-width: 480px) {
+        font-size: $font-size-small;
+    }
 }
 
 // ASCII decoration styles
 .asciiContainer {
-    margin-bottom: $spacing-md;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    width: 100%;
-
-    @media (max-width: 768px) {
-        margin-bottom: $spacing-sm;
-    }
+    width: auto;
 }
 
-.asciiLine {
-    color: $command-color;
-    font-family: $font-family-mono;
-    width: 100%;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: 1;
-    white-space: nowrap;
-
-    @media (max-width: 768px) {
-        font-size: 0.9rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.8rem;
-    }
-}
-
-.titleRow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: $spacing-xs 0;
-}
-
-.asciiChar {
-    color: $command-color;
-    font-family: $font-family-mono;
-    padding: 0 $spacing-xs;
-}
-
-.highlight {
-    color: $command-color;
-    font-weight: normal;
-}
-
-.themeToggleContainer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}

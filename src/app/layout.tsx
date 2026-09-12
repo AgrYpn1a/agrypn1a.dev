@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import 'katex/dist/katex.min.css';
 import './globals.scss';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { Header } from '@/components/header/Header';
-import getConfig from 'next/config';
 import { TerminalNav } from '@/components/terminal-nav/TerminalNav';
 import styles from './layout.module.scss';
 
@@ -29,19 +29,35 @@ export const metadata: Metadata = {
     },
 };
 
+// Runs before first paint to set the theme from localStorage (falling back to
+// the OS preference), so pages never flash the default light theme before
+// React hydrates. Keep this in sync with ThemeProvider's initialization.
+const themeInitScript = `
+(function () {
+    try {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+})();
+`;
+
 export default function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const { publicRuntimeConfig } = getConfig();
-
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+            </head>
             <ThemeProvider>
                 <body className={`${geistSans.variable} ${geistMono.variable}`}>
                     <div className={styles.container}>
-                        <Header siteVersion={publicRuntimeConfig?.version} />
+                        <Header />
                         <TerminalNav />
                         <main className={styles.mainContent}>{children}</main>
                     </div>

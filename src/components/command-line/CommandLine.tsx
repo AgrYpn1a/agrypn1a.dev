@@ -5,7 +5,7 @@ import styles from './CommandLine.module.scss';
 
 const CommandLine = () => {
     const [displayText, setDisplayText] = useState('');
-    const fullText = 'My name is Rastko, I code and I yaRrr and I brap..brap.. and more...';
+    const fullText = 'Greetings, fellow adventurer!';
     const [cursorVisible, setCursorVisible] = useState(true);
 
     // Typing animation effect

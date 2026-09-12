@@ -9,17 +9,20 @@ export default function Home() {
     return (
         <div className={styles.container}>
             <div className={styles.aboutMe}>
-                Welcome to my digital realm. The very purpose of this place is to serve as an informal CV, braindump, blog and whatever else it will evolve to
-                be. I am a computer programmer that writes software and develops games. I like to explore math and computer science and discover links between
-                the two. I am a humble inquirer into the ancient faith, metaphysics and mystical elements of the world and beyond. My passion is building and
-                keeping alive an over twenty years old unreliable car with a rotary engine (thank you Mazda). Sailing the seas of Greece is what helps me reset
-                and enjoy life beyond the screen. Beside cars, boats and geek stuff I sometimes like to read, create art and listen to music.
+                My name is Rastko, I live in Serbia and this is my digital space. The very purpose of its existence is to serve as an informal CV, braindump,
+                blog and whatever else it may evolve to be. I am a computer programmer that writes software, tools and likes to experiment with different
+                languages and technologies. I have experience in full stack development, mobile app development and game development. I like to explore math and
+                computer science and discover links between the two. I am a humble inquirer into the ancient faith, metaphysics and mystical elements of the
+                world and beyond. My passion is building and keeping alive over twenty years old unreliable cars powered by a rotary engine (thank you Mazda).
+                Sailing the seas of Ελλάς is what helps me recover and enjoy life beyond the screen.
             </div>
 
+            {/*
             <blockquote className={styles.quote}>
                 Maybe I&apos;m just a bizarre little person who walks back and forth.
                 <cite className={styles.quoteAuthor}>Terry A. Davis</cite>
             </blockquote>
+            */}
 
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
@@ -97,18 +100,21 @@ export default function Home() {
                 </div>
                 <div className={styles.experienceList}>
                     <div className={styles.experienceItem}>
-                        <div className={styles.experienceTitle}>Senior Frontend Engineer @ The Digital Factory</div>
+                        <div className={styles.experienceTitle}>Full-stack Engineer @ The Digital Factory</div>
                         <div className={styles.experiencePeriod}>2024 - Present</div>
                         <div className={styles.experienceTech}>
                             <span className={styles.techTag}>Web app</span>
-                            <span className={styles.techTag}>JavaScript</span>
+                            <span className={styles.techTag}>JS</span>
+                            <span className={styles.techTag}>TS</span>
+                            <span className={styles.techTag}>NestJS</span>
+                            <span className={styles.techTag}>PostgreSQL</span>
                             <span className={styles.techTag}>React</span>
                             <span className={styles.techTag}>Redux</span>
                         </div>
                     </div>
 
                     <div className={styles.experienceItem}>
-                        <div className={styles.experienceTitle}>Senior Frontend Engineer @ Hotovo</div>
+                        <div className={styles.experienceTitle}>Frontend Engineer @ Hotovo</div>
                         <div className={styles.experiencePeriod}>2022 - 2024</div>
                         <div className={styles.experienceTech}>
                             <span className={styles.techTag}>Web app</span>

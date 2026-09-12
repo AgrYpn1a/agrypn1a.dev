@@ -8,8 +8,11 @@ const TerminalNav = () => {
             <Link href="/" className={styles.menuItem}>
                 ~
             </Link>
+            <Link href="/blog" className={styles.menuItem}>
+                BLOG
+            </Link>
             <Link href="/org" className={styles.menuItem}>
-                ARTICLES
+                ORG DUMP
             </Link>
         </nav>
     );

@@ -8,7 +8,7 @@
 }
 
 .aboutMe {
-  color: $accent-color;
+  // color: $accent-color;
   margin-top: $spacing-xs;
   font-family: $font-family-mono;
   line-height: 1.5;
@@ -16,15 +16,6 @@
   margin-bottom: $spacing-md;
   padding-bottom: $spacing-md;
   text-align: justify;
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-    text-align: justify;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.85rem;
-  }
 }
 
 // New additions for work experience and contact sections

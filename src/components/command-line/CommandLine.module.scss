@@ -18,6 +18,11 @@
     font-family: $font-family-mono;
     font-size: $font-size-base;
     padding-left: $spacing-lg;
+
+    @media (max-width: 480px) {
+        font-size: $font-size-small;
+        padding-left: $spacing-sm;
+    }
 }
 
 .cursor {

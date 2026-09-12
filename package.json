@@ -6,7 +6,8 @@
         "dev": "next dev --turbopack",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "publish": "npm ci && npm run build && firebase deploy --only hosting"
     },
     "dependencies": {
         "next": "15.2.1",

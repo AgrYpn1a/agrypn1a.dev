@@ -201,6 +201,31 @@ li a {
   }
 }
 
+// Keep wide content (display equations, code, images, tables) from overflowing
+// the viewport on narrow screens — they scroll inside their own box instead.
+.katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 // Theme variables with light/dark mode support
 :root {
     // Light Theme (Default)

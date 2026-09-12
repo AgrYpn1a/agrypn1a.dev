@@ -3,16 +3,10 @@
 import { useEffect, useState } from 'react';
 import CommandLine from '../command-line/CommandLine';
 import styles from './Header.module.scss';
-import { SiteVersion } from '../site-version/SiteVersion';
 import ThemeToggle from '../theme-toggle/ThemeToggle';
 
-type HeaderProps = {
-    siteVersion: string;
-};
-
-const Header: React.FC<HeaderProps> = ({ siteVersion }) => {
+const Header: React.FC = () => {
     const [currentTime, setCurrentTime] = useState('00:00:00');
-    const [titleVisible, setTitleVisible] = useState(false);
 
     // Update time
     useEffect(() => {
@@ -25,39 +19,25 @@ const Header: React.FC<HeaderProps> = ({ siteVersion }) => {
         return () => clearInterval(timerId);
     }, []);
 
-    // Show title with a slight delay
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setTitleVisible(true);
-        }, 600);
-
-        return () => clearTimeout(timer);
-    }, []);
-
     return (
         <header className={styles.header}>
-            <div className={styles.status}>
-                <CommandLine />
-                <div className={styles.statusTime}>{currentTime}</div>
-            </div>
+            <div className={styles.topRow}>
+                <div className={styles.titleContainer}>
+                    <div className={styles.asciiContainer}>
+                        <div className={styles.titleBox}>
+                            <span className={styles.blocks}>▓▒░</span>
+                            <span className={styles.title}>RASTKO&apos;S DIGITAL REALM</span>
+                            <span className={styles.blocks}>░▒▓</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div className={styles.themeToggleContainer}>
                 <ThemeToggle />
             </div>
 
-            <div className={styles.titleContainer}>
-                <div className={styles.asciiContainer}>
-                    <div className={styles.asciiLine}>┌──────────────────────────────────┐</div>
-                    <div className={styles.titleRow}>
-                        <div className={`${styles.title} ${titleVisible ? styles.visible : ''}`}>
-                            <span>▓▒░ </span>
-                            <span>RASTKO&apos;S DIGITAL REALM</span>
-                            <span> ░▒▓</span>
-                        </div>
-                    </div>
-                    <div className={styles.asciiLine}>└──────────────────────────────────┘</div>
-                </div>
-                <SiteVersion version={siteVersion} />
+            <div className={styles.status}>
+                <CommandLine />
+                <div className={styles.statusTime}>{currentTime}</div>
             </div>
         </header>
     );

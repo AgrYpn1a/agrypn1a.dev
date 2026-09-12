@@ -1,9 +1,11 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-    publicRuntimeConfig: {
-        version: '1.0.0',
+    output: 'export',
+    images: {
+        unoptimized: true,
     },
+    trailingSlash: true,
 };
 
 export default nextConfig;

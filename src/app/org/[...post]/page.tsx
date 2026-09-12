@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import Rehype from '@/components/Rehype';
 import { getAllPaths, getPostBySlug } from '@/lib/api';
@@ -20,44 +19,16 @@ import { getAllPaths, getPostBySlug } from '@/lib/api';
 //     };
 // }
 export async function generateStaticParams() {
-    // const paths = await getAllPaths();
+    // Read paths from disk. Static export has no running server to fetch from.
+    const paths = await getAllPaths();
 
-    let paths = [];
-
-    try {
-        const pathsRes = await fetch('http://localhost:3000/api/content/all-paths');
-        paths = (await pathsRes.json()).paths as string[];
-    } catch {
-        // In case of error, fetch paths from disk
-        paths = await getAllPaths();
-    }
-
-    return paths.map((path) => ({
-        slug: [path.replace(/\.org$/, '')],
-    }));
-
-    // return {
-    // slug: ['id', 'content']
-    // }
-    // add '/' which is synonymous to '/index'
-    // paths.push('/');
-
-    // console.log('[generateStaticParams]', { paths });
-
-    // return {
-    //     paths,
-    //     fallback: false,
-    // };
-
-    // const posts = await getAllPostsWithoutBody();
-
-    // return posts?.map((post) => {
-    //   return {
-    //     // TODO: We really want to use slug instead of id
-    //     // but there is no known way to achieve this ATM.
-    //     slug: [post.id, parsePostSlug(post.url)],
-    //   };
-    // });
+    return paths
+        .map((path) => path.replace(/\.org$/, ''))
+        .filter((path) => path.startsWith('/org/'))
+        .map((path) => ({
+            // Catch-all segment is named `post` (folder is `[...post]`).
+            post: path.replace(/^\/org\//, '').split('/'),
+        }));
 }
 
 // export const getStaticProps = async ({ params }: any) => {
@@ -80,15 +51,6 @@ export async function generateStaticParams() {
 const Note = ({ title, hast, backlinks }: any) => {
     return (
         <main>
-            <Head>
-                <title>Rastko Tojagic</title>
-                <link
-                    rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-                    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
-                    crossOrigin="anonymous"
-                />
-            </Head>
             <h1>{title}</h1>
             <Rehype hast={hast} />
             {!!backlinks?.length && (
@@ -120,14 +82,8 @@ export default async function PostPage({ params }: DynamicParams) {
     const { post } = await params;
     const slug = `/org${post.reduce((r, p) => `${r}/${p}`, '')}`;
 
-    let postData;
-
-    try {
-        const postRes = await fetch(`http://localhost:3000/api/content/post?slug=${slug}`);
-        postData = (await postRes.json()).post;
-    } catch {
-        postData = await getPostBySlug(slug);
-    }
+    // Read from disk. Static export resolves all pages at build time.
+    const postData = await getPostBySlug(slug);
 
     return <Note title={postData?.data.title} hast={postData?.result} backlinks={[]} />;
 }

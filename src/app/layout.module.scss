@@ -16,7 +16,13 @@
     height: 100%;
     width: 100%;
     margin: 0 auto;
+    // Prevent wide children (equations, code) from forcing horizontal page scroll.
+    overflow-x: hidden;
     @media (max-width: 768px) {
         background-color: $bg-color !important;
+        padding: $spacing-lg;
+    }
+    @media (max-width: 480px) {
+        padding: $spacing-md;
     }
 }
