@@ -1,0 +1,78 @@
+@use '@/styles/variables' as *;
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-md;
+}
+
+// Masonry via CSS columns: cards flow top-to-bottom, then into the next column.
+.masonry {
+    columns: 220px;
+    column-gap: $spacing-md;
+    margin-top: $spacing-lg;
+}
+
+.category {
+    break-inside: avoid;
+    margin-bottom: $spacing-md;
+    border: 1px solid $border-color;
+    padding: $spacing-md;
+}
+
+.categoryLink {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: $spacing-sm;
+    text-decoration: none;
+    color: $command-color;
+    font-weight: bold;
+    font-size: 1.05rem;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.count {
+    color: $accent-color;
+    font-size: $font-size-small;
+    font-weight: normal;
+}
+
+.subcategories {
+    margin: $spacing-sm 0 0;
+    font-size: $font-size-small;
+
+    li {
+        padding-left: $spacing-md;
+        margin-bottom: 0;
+
+        &::before {
+            content: '•';
+            color: $accent-color;
+            font-weight: normal;
+        }
+    }
+}
+
+.empty {
+    opacity: 0.4;
+    cursor: default;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.breadcrumb {
+    font-size: $font-size-small;
+    color: $accent-color;
+    margin-bottom: $spacing-sm;
+
+    a {
+        color: inherit;
+    }
+}

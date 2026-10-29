@@ -28,7 +28,7 @@ body {
 
 h1 {
   color: $heading-color;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
   font-family: $font-family-mono;
   margin-bottom: $spacing-md;
@@ -38,7 +38,7 @@ h1 {
 
 h2 {
   color: $command-color;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   font-family: $font-family-mono;
   margin-bottom: $spacing-sm;
@@ -46,7 +46,7 @@ h2 {
 
 h3 {
   color: $accent-color;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: bold;
   font-family: $font-family-mono;
   margin-bottom: $spacing-sm;
@@ -54,7 +54,7 @@ h3 {
 
 h4 {
   color: $text-color;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   font-family: $font-family-mono;
   margin-bottom: $spacing-xs;
@@ -89,43 +89,74 @@ h4 {
 
 /* TOC */
 .toc {
-  padding: 0;
-  margin: $spacing-md 0;
+  margin: $spacing-lg 0 $spacing-xl;
+  padding: $spacing-md $spacing-lg;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  background-color: color-mix(in srgb, $border-color 10%, transparent);
+
+  &::before {
+    content: 'contents:';
+    display: block;
+    color: $border-color;
+    font-size: $font-size-small;
+    margin-bottom: $spacing-xs;
+  }
 
   .toc-level {
     list-style: none;
     padding-left: 0;
     margin: 0;
 
-    &.toc-level-2 {
-      padding-left: 0.2em;
-    }
-
-    &.toc-level-3 {
-      padding-left: 0.4em;
-    }
-
-    &.toc-level-4 {
-      padding-left: 0.6em;
+    .toc-level {
+      padding-left: 1em;
     }
   }
 
   .toc-item {
     position: relative;
     padding-left: 1em;
-    margin-bottom: $spacing-xs;
+    margin-bottom: 0;
+    line-height: 1.4;
 
     &::before {
-      content: '> ';
+      content: '>';
       position: absolute;
       left: 0;
-      color: $command-color;
+      color: $border-color;
+      font-size: $font-size-small;
+      font-weight: normal;
     }
   }
 
   .toc-link {
-    color: $highlight-color;
+    color: $text-color;
+    font-size: $font-size-small;
     text-decoration: none;
+
+    &:hover {
+      color: $highlight-color;
+      border-bottom-color: transparent;
+    }
+  }
+}
+
+/* Quotes (org `#+begin_quote`), matching the home page quote */
+blockquote {
+  font-family: $font-family-mono;
+  color: $text-color;
+  border-left: 2px solid $command-color;
+  padding: $spacing-md $spacing-md $spacing-md $spacing-lg;
+  margin: $spacing-lg 0;
+  // `rgba()` can't take a CSS variable holding a hex color, so tint with color-mix instead.
+  background-color: color-mix(in srgb, $command-color 5%, transparent);
+
+  p {
+    margin: 0;
+
+    & + p {
+      margin-top: $spacing-sm;
+    }
   }
 }
 

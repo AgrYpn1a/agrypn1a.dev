@@ -1,0 +1,95 @@
+@use '@/styles/variables' as *;
+
+.cta {
+    font-family: $font-family-mono;
+    font-size: $font-size-small;
+    color: $command-color;
+    background-color: transparent;
+    border: 1px solid $command-color;
+    padding: $spacing-xs $spacing-md;
+    cursor: pointer;
+
+    &:hover {
+        background-color: color-mix(in srgb, $command-color 15%, transparent);
+    }
+}
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: color-mix(in srgb, $bg-color 70%, transparent);
+    backdrop-filter: blur(2px);
+}
+
+// 5% margin on each side of the viewport.
+.modal {
+    position: absolute;
+    inset: 5vh 5vw;
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    padding: $spacing-sm $spacing-md;
+    border-bottom: 1px solid $border-color;
+    font-size: $font-size-small;
+}
+
+.title {
+    color: $command-color;
+    white-space: nowrap;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs $spacing-md;
+    flex: 1;
+    margin: 0;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+        padding: 0;
+        margin: 0;
+
+        &::before {
+            content: none;
+        }
+    }
+}
+
+.swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.close {
+    font-family: $font-family-mono;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: $text-color;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        color: $accent-color;
+    }
+}
+
+.canvas {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}

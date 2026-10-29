@@ -11,6 +11,9 @@ const TerminalNav = () => {
             <Link href="/blog" className={styles.menuItem}>
                 BLOG
             </Link>
+            <Link href="/notes" className={styles.menuItem}>
+                NOTES
+            </Link>
             <Link href="/org" className={styles.menuItem}>
                 ORG DUMP
             </Link>

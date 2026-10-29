@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Rehype from '@/components/Rehype';
 import { getAllPaths, getPostBySlug } from '@/lib/api';
+import { formatPostDate } from '@/utils/posts';
+import styles from './page.module.scss';
 
 // import { getAllPaths, getPostBySlug } from '../lib/api';
 
@@ -48,11 +50,27 @@ export async function generateStaticParams() {
 //     };
 // };
 
-const Note = ({ title, hast, backlinks }: any) => {
+const Note = ({ title, date, hast, backlinks }: any) => {
+    const formattedDate = formatPostDate(date);
     return (
         <main>
-            <h1>{title}</h1>
-            <Rehype hast={hast} />
+            <header className={styles.postHeader}>
+                <h1 className={styles.postTitle}>
+                    <span className={styles.metaLabel} aria-hidden="true">
+                        title:
+                    </span>
+                    {title}
+                </h1>
+                {formattedDate && (
+                    <div className={styles.postDate}>
+                        <span className={styles.metaLabel}>date:</span>
+                        {formattedDate}
+                    </div>
+                )}
+            </header>
+            <div className={styles.content}>
+                <Rehype hast={hast} />
+            </div>
             {!!backlinks?.length && (
                 <section
                     style={{
@@ -85,5 +103,5 @@ export default async function PostPage({ params }: DynamicParams) {
     // Read from disk. Static export resolves all pages at build time.
     const postData = await getPostBySlug(slug);
 
-    return <Note title={postData?.data.title} hast={postData?.result} backlinks={[]} />;
+    return <Note title={postData?.data.title} date={postData?.data.date} hast={postData?.result} backlinks={[]} />;
 }

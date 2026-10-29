@@ -1,0 +1,45 @@
+@use '@/styles/variables' as *;
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+}
+
+.card {
+    display: block;
+    text-decoration: none;
+    border: 1px solid $border-color;
+    padding: $spacing-md;
+
+    &:hover {
+        background-color: rgba(42, 161, 152, 0.05);
+    }
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+}
+
+.title {
+    color: $command-color;
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+.date {
+    color: $accent-color;
+    font-size: $font-size-small;
+    flex-shrink: 0;
+}
+
+.desc {
+    margin: $spacing-sm 0 0;
+    color: $text-color;
+    line-height: 1.5;
+}

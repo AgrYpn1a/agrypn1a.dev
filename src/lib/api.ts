@@ -1,4 +1,6 @@
 import * as path from 'path';
+import * as fs from 'fs';
+import { execSync } from 'child_process';
 import { trough } from 'trough';
 import { toVFile } from 'to-vfile';
 import report from 'vfile-reporter';
@@ -15,6 +17,11 @@ type PageData = {
     links: string[];
     backlinks: Set<string>;
     filetags?: string;
+    // ISO date of the last update, resolved from git (falls back to the
+    // filename timestamp, then disk mtime). See `lastUpdated`.
+    date?: string;
+    // Short excerpt: `#+description:` keyword if set, else the first paragraph.
+    description?: string;
 };
 
 export type Post = {
@@ -57,6 +64,8 @@ function collectFiles(root: string): Promise<Page[]> {
                         links: [],
                         category,
                         backlinks: new Set(),
+                        date: lastUpdated(f.path),
+                        description: '',
                     } as PageData;
 
                     f.data = data;
@@ -83,8 +92,67 @@ async function processPosts(files: Page[]) {
 
         await orgToHtml(file);
 
+        // `#+description:` (captured by extractKeywords) wins; otherwise fall
+        // back to the first paragraph of the rendered content.
+        const description = (file.data.description as string) || extractDescription((file as any).result);
+        file.data.description = truncate(description.trim(), 180);
+
         return file;
     }
+}
+
+// Last-updated date as an ISO string. Git commit date is authoritative and
+// stable across machines (disk mtime is reset to checkout time on clone/pull).
+// Falls back to the org-roam filename timestamp, then disk mtime.
+function lastUpdated(filePath?: string): string {
+    if (!filePath) return '';
+
+    try {
+        const iso = execSync(`git log -1 --format=%cI -- "${path.basename(filePath)}"`, {
+            cwd: path.dirname(filePath),
+            stdio: ['pipe', 'pipe', 'ignore'],
+        })
+            .toString()
+            .trim();
+        if (iso) return iso;
+    } catch {
+        // git unavailable or file not committed — fall through.
+    }
+
+    const match = path.basename(filePath).match(/^(\d{4})(\d{2})(\d{2})\d{6}/);
+    if (match) return `${match[1]}-${match[2]}-${match[3]}`;
+
+    try {
+        return fs.statSync(filePath).mtime.toISOString();
+    } catch {
+        return '';
+    }
+}
+
+// Text of the first <p> element in a hast tree.
+function extractDescription(tree: any): string {
+    let text = '';
+    walk(tree);
+    return text;
+
+    function walk(node: any) {
+        if (text || !node) return;
+        if (node.tagName === 'p') {
+            text = hastText(node);
+            return;
+        }
+        node.children?.forEach(walk);
+    }
+}
+
+function hastText(node: any): string {
+    if (node.type === 'text') return node.value ?? '';
+    return (node.children ?? []).map(hastText).join('');
+}
+
+function truncate(text: string, max: number): string {
+    if (text.length <= max) return text;
+    return text.slice(0, max).replace(/\s+\S*$/, '') + '…';
 }
 
 // Assign all collected backlinks to file. This function should be
